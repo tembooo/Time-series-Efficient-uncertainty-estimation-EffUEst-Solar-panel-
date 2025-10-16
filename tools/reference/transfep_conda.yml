@@ -1,0 +1,13 @@
+name: transfep
+channels:
+  - conda-forge
+dependencies:
+  - ipykernel
+  - ipympl
+  - joblib
+  - matplotlib
+  - numpy
+  - polars
+  - scipy
+  - scikit-learn
+  - seaborn
