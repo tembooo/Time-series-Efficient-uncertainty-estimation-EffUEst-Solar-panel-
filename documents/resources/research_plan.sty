@@ -1,0 +1,83 @@
+%% $Id$
+
+% (Re)definitions
+% Algorithms: environment
+\newtheorem{alg}{Algorithm}
+\long\def\@makealgocaption#1#2{\vskip 2ex \small
+  \hbox to \hsize{\parbox[t]{\hsize}{{\bfseries #1.} #2}}}
+\newcounter{algorithm}
+\def\thealgorithm{\@arabic\c@algorithm}
+\def\fps@algorithm{tbp}
+\def\ftype@algorithm{4}
+\def\ext@algorithm{lof}
+\def\fnum@algorithm{Algorithm \thealgorithm}
+\def\algorithm{\let\@makecaption\@makealgocaption\@float{algorithm}}
+\let\endalgorithm\end
+
+% Counters: research results
+\newcommand{\ctrinc}[1]{%
+  \arabic{#1}\addtocounter{#1}{1}}
+\newcounter{ctrres}
+\setcounter{ctrres}{1}
+\newcommand{\result}[1]{%
+  \par (\textbf{Result \ctrinc{ctrres}}: #1)}
+\newcounter{ctrres1}
+\setcounter{ctrres1}{1}
+\newcommand{\resulta}[1]{%
+  (\ctrinc{ctrres1}) #1}
+
+% Maketitle the tight way
+\def\@maketitle{%
+%  \newpage
+  \null
+%  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+%    {\LARGE \@title \par}%
+    {\Large \@title \par}%
+%    \vskip 1.5em%
+    \vskip 0.5em%
+%    {\large
+    {
+%      \lineskip .5em%
+      \lineskip .25em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+%    \vskip 1em%
+    \vskip 0.5em%
+%    {\large \@date}%
+    {\@date}%
+  \end{center}%
+  \par
+%  \vskip 1.5em%
+}
+
+% Notes: to do
+%\newcommand\lasse[1]{%
+%  \todo[color=red,inline]{#1}}
+\newcommand\todo[1]{%
+  {\color{red}\footnote{\color{red}#1}}}
+
+% Section spacing: make it tighter
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+  {-0.5ex \@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus.2ex}%
+  {\normalfont\Large\bfseries}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+  {-0.25ex\@plus -1ex \@minus -.2ex}%
+  {1.0ex \@plus .2ex}%
+  {\normalfont\large\bfseries}}
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+  {-0.25ex\@plus -1ex \@minus -.2ex}%
+  {1.0ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+  {2.25ex \@plus 1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
+  {2.25ex \@plus 1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+

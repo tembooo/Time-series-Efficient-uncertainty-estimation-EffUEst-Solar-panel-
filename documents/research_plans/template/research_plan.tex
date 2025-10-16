@@ -1,0 +1,437 @@
+%% $Id$
+
+%\documentclass[pdftex,12pt,a4]{article}
+\documentclass[11pt,a4,notitlepage]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%\usepackage[nolist]{acronym}
+\usepackage{algorithmic}
+\usepackage{amsmath}
+%\usepackage{amssymb}
+%\usepackage{cite}
+\usepackage[usenames]{color}
+%\usepackage{csvtools} % obsolete package
+\usepackage{datatool} % replaces csvtools
+\usepackage{draftcopy}
+\usepackage{epsfig}
+\usepackage{eurosym}
+\usepackage{geometry}
+\usepackage[acronym,shortcuts]{glossaries}
+%\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
+%\usepackage{html}
+\usepackage[pdfborder={0 0 1}]{hyperref}
+\usepackage{mfirstuc}
+%\usepackage{odsfile}
+\usepackage{pslatex}
+\usepackage{relsize}
+\usepackage{SIunits}
+\usepackage[tight]{subfigure}
+%\usepackage{subfigure}
+\usepackage{theorem}
+\usepackage{times}
+%\usepackage[obeyDraft]{todonotes}
+\usepackage{url}
+\usepackage{wrapfig}
+
+\DeclareGraphicsExtensions{.eps,.pdf,.png,.jpg}
+
+% natbib must be loaded before babel to prevent tilde showing up in
+% et~al.
+%\usepackage[square]{natbib}
+\usepackage[english]{babel}
+
+% Special to a research plan
+\usepackage{../resources/research_plan}
+%\usepackage{research_plan}
+
+% Settings
+\draftcopyName{Confidential}{130}
+\geometry{verbose,a4paper,nohead,tmargin=20mm,bmargin=20mm,lmargin=20mm,rmargin=20mm}
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{3}
+\setlength\parskip{0.5\medskipamount}
+\setlength\parindent{0pt}
+\subfigcapskip=0pt
+\subfigbottomskip=0pt
+
+%\graphicspath{{resources/}}
+
+%\begin{acronym}
+\newacronym{CVPRL}{CVPRL}{Computer Vision and Pattern Recognition Laboratory}
+\newacronym{CVS}{CVS}{concurrent version system}
+\newacronym{EBM}{EBM}{evidence-based medicine}
+\newacronym{GAN}{GAN}{generative adversarial network}
+\newacronym{GT}{GT}{ground truth}
+\newacronym{ICP}{ICP}{iterative closest point}
+\newacronym{IQA}{IQA}{image quality assessment}
+\newacronym{IQM}{IQM}{image quality metric}
+\newacronym{IQMs}{IQMs}{image quality metrics}
+\newacronym{LUT}{LUT}{Lappeenranta University of Technology}
+\newacronym{NR}{NR}{no-reference}
+\newacronym{RGB}{RGB}{red-green-blue}
+\newacronym{RR}{RR}{reduced-reference}
+\newacronym{SVN}{SVN}{Subversion}
+%\end{acronym}
+
+\newcommand{\researcher}{N. N.}
+
+% RESEARCH PLAN OUTLINE (www.aka.fi)
+%
+% The length of a research plan must not exceed 12 pages (Times New Roman
+% 12 pt or corresponding). The research plan shall include the following
+% information, intended for an international expert for purposes of
+% evaluating the application:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\pagestyle{plain}
+\textbf{Research plan (Confidential)} \hfill Lappeenranta
+\number\year-\number\month-\number\day
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center} \begin{tabular}{rp{0.666\textwidth}}
+%
+Topic: & \textbf{PROJECT TITLE (ACRONYM)} \\
+%
+Related to: & RESEARCH FOCUS AREA (ACRONYM) \\
+%
+Resources: & \researcher , DAY.MONTH.YEAR--DAY.MONTH.YEAR \\
+%
+Results: & \resulta{Background information}, \\
+%
+& \resulta{METHOD DEVELOPMENT}, \\
+%
+& \resulta{EVALUATION}, and \\
+%
+& \resulta{Documentation}. \\
+%
+\end{tabular} \end{center} \vspace{2\medskipamount}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center} \small \begin{tabular}{llp{0.5\textwidth}l}
+%
+\textbf{Date} & \textbf{Author} & \textbf{Comments} & \textbf{Status}\\
+%
+\hline
+%
+YEAR-MONTH-DAY & LTL & Initial version & Draft \\
+%
+\end{tabular} \end{center}
+
+\vspace{2\medskipamount}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Background}
+
+% Evidence-based medicine and medical images
+\Ac{EBM} is the current practise in many subfields of medical science. In this
+approach, the medical diagnosis and planning of treatment is based on scientific
+knowledge and objective examination of the patient through biomedical
+measurements. One example of the knowledge used in the process is images because
+of the versatile possibilities to image the condition of the patient or her
+organs. From this viewpoint, the medical doctors base their decisions nowadays
+on a more complete and timely view to the situation.
+
+% Eye diseases and current imaging
+Eye diseases have become one of the rapidly increasing health threats worldwide.
+For example, diabetes causes abnormalities in the retina (diabetic retinopathy),
+kidneys (diabetic nefropathy), and nervous system (diabetic neuropathy). The
+diabetic retinopathy and other eye-related diseases are diagnosed from eye
+fundus images (Fig.\,\ref{fig:images}) by medical experts who look for special
+lesions in the images. The attention of medical expert in fundus examination
+restricts the possibility to perform broad screenings. For screening and
+monitoring a progressive disease, automatic image processing methods are a
+well-motivated possibility to help a single expert's work, or enable a wider
+screening program.
+%
+\begin{figure}[!ht] \centering
+%
+\subfigure[Missing
+image.]{\includegraphics[width=0.4\textwidth]{resources/missing}
+\label{fig:image1}}
+%
+\subfigure[Missing
+image.]{\includegraphics[width=0.4\textwidth]{resources/missing}
+\label{fig:image2}}
+%
+\caption{Example images.} \label{fig:images}
+%
+\end{figure}
+
+% ...
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Objectives}
+
+The objectives of this research are as follows:
+%
+\begin{enumerate}
+%
+\item Carry out a literature search and write a review about the findings.
+%
+\item Study the available methods for ...
+%
+\item Implement a selected method for ...
+%
+\item Evaluate the method performance with the existing data, and analyse the
+results.
+%
+\item Document the work in the form of a ...
+%
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Research methods and material}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Research methods}
+
+In this reasearch, the focus is on ...  The required research methods and
+evalution procedures arise from the preceding research of \ac{CVPRL} and, when
+appropriate, the standard ones within the research field(s). In addition,
+capability to do independent work (under supervision) and good skills in the
+English language are needed.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Research steps}
+
+The main steps of the work are given below.
+
+\begin{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item[] \textbf{Background}
+%
+\item If not familiar, study the version control system used in the project.
+Start using the repository/directory specified by the supervisor(s) and commit
+your changes daily. For the data used in the research, results produced in the
+experiments, and literature produced by others, use the file server (not the
+version control repository) as instructed.
+%
+\item If not familiar, study documentation with LaTex and BibTex. Take the
+existing template and update the manuscript as the research progresses.
+%
+%\item If not familiar, study the capabilities of relevant Matlab toolboxes.
+%
+\item Study the preceding relevant work and the available
+data accessible to \ac{CVPRL}.
+%
+\item Review the relevant in-context literature and acquire at least an initial
+understanding of ...
+%
+\item Write a review of the found methods to the manuscript.
+%
+\result{Background information}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item[] \textbf{METHOD DEVELOPMENT}
+%
+\item Review the literature on ...
+%
+\item Study ...
+%
+\item Initially experiment with ...
+%
+\item After selecting the approaches to use with the supervisor(s), implement
+the methods.
+%
+\item Plan and carry out validation experiments on the available data.
+%
+\item Document the methods and results in the thesis manuscript.
+%
+\result{Alignment of image and model spectra}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item[] \textbf{EVALUATION}
+%
+\item Study ...
+%
+\item Design the experiments based on ...
+%
+\item Carry out the performance evaluation experiments with the available data,
+and analyse the results.
+%
+\item Document the methods and results in the thesis manuscript.
+%
+\result{Inversion of spectral images}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\item[] \textbf{Documentation}
+%
+\item Complement the thesis manuscript as needed.
+%
+\item Get comments from the supervisor(s).
+%
+\item Finalise the manuscript according to the comments.
+%
+%\item If the research results allow, prepare a manuscript to a scientific
+%conference (or journal) based on the Master's thesis.
+%
+\result{Documentation}
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Implementation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Timetable}
+
+The tentative schedule for the work is shown in Table\,\ref{tab:timetable}.  The
+relevant notes are as follows:
+%
+\begin{itemize}
+%
+\item The order of the topics in the schedule should not be understood as fixed.
+Some topics can be studied in parallel.
+%
+\item If instructed by the project manager, all the working hours must be put
+into the work time management system.
+%
+\item There will be a full evaluation of the results after the research work.
+Possibilities for further publication of the results will be considered.
+%
+\end{itemize}
+
+\renewcommand{\dtldisplayafterhead}{\hline}
+%
+\DTLloadrawdb{timetable}{research_resources.csv}
+%
+\begin{table}[h] \centering
+%
+\caption{Timetable for the research.} \label{tab:timetable}
+%
+\DTLdisplaydb{timetable}
+%
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Researchers and research environment}
+
+The following researchers will take part to the research:
+
+\begin{center} \begin{tabular}{lll}
+%
+Position & Name & Notes \\
+%
+\hline
+%
+Research assistant & \researcher & \\
+%
+%1st supervisor     & Prof. Lasse Lensu & \\
+%
+%2nd supervisor     & MSc Lauri Laaksonen & \\
+%
+\hline
+%
+%Thesis examiner & Prof. Lasse Lensu & \\
+%
+%Thesis 2. examiner & N. N. & \\
+%
+\end{tabular} \end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Mobility}
+
+This research requires collaboration with experts working on different fields
+of science. Research visits in this regard are performed as needed.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Researcher training}
+
+\researcher\ will get experience on research work within the field of image
+processing. The project strengthens the medical image processing research in
+\ac{CVPRL} and supports the specialisation of the supervisor(s) in the topic.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Expected results and risks}
+
+The expected results are as follows:
+%
+\begin{itemize}
+%
+\item Literature reviews on selected methods for ...
+%
+\item A method for ...
+%
+\item Experimental results in the form of ...
+%
+\item The documentation and notes for future work.
+%
+\end{itemize}
+
+The potential risks include the following:
+%
+\begin{itemize}
+%
+\item Due to the challenging topic, the timetable planned for the research is
+unrealistic. It means that all the objectives may not be fully achieved.
+%
+\item The literature review brings up research which affects the novelty of this
+research. This would affect the plans to publish the scientific results.
+%
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{acm}
+\bibliography{research_plan}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+
+\section{Notes about literature surveys}\label{sec:literature_survey}
+
+A few notes for starting a literature survey:
+%
+\begin{enumerate}
+%
+\item Select initially a focused set of keywords for literature searches. If you
+end up with too few items in the searches, edit the keywords to become more
+general. Update the set of keywords as needed.
+%
+\item To make literature searches, make use of the following:
+%
+\begin{itemize}
+%
+\item \href{http://scholar.google.com}{Google Scholar}.
+%
+\item The publisher databases accessible through LUT library such as
+\href{https://ieeexplore.ieee.org/}{IEEE Xplore},
+\href{http://www.scopus.com/home.url}{Scopus} and
+\href{https://link.springer.com/}{Springer}.
+%
+\end{itemize}
+%
+\item Focus on articles that have a high number of citations and/or have been
+published in top journals or top conferences.
+%
+\item Read the abstracts and conclusions to be able to say whether each article
+is relevant for your research.
+%
+\item When you find an interesting paper:
+%
+\begin{itemize}
+%
+\item If the paper is an author's manuscript, for example, in arxiv,
+ResearchGate or something similar, check whether the article has been properly
+published and use that version.
+%
+\item Go through the list of references of that paper to find the earlier works
+on the topic.
+%
+\item Use Google Scholar or another database to get a list of papers that cite
+the paper and review them.
+%
+\item For significant research groups related to your research, go through the
+publication lists of the authors.
+%
+\item Store the bibliography information and electronic article copies to a
+bibliography management system such as \href{http://www.zotero.org/}{Zotero}.
+%
+\end{itemize}
+%
+\end{enumerate}
+
+\end{document}
